@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    var colour;
+    var target_colour = ["aqua", "beige", "coral", "grey", "orange", "pink", "red", "salmon", "teal"];
+    var colour_input_text;
+    var guess_input;
+    var finished = false;
+    var attempts = 0;
+    var random_colour;
+
+
+    function recognizeColour() {
+      var x = Math.floor(Math.random() * target_colour.length);
+      random_colour = target_colour[x];
+      console.log(x);
+      alert(random_colour);
+
+      while (!finished) {
+        colour_input_text = prompt("I am thinking of one of these colours. \n\n" + target_colour.join(", ") + "\n\n What colour am I thinking of?");
+        guess_input = colour_input_text.toLocaleLowerCase();
+        attempts += 1;
+        finished = check_colour();
+      }
+    }
+
+    function check_colour() {
+      if (target_colour.indexOf(guess_input) < 0) {
+        alert("Sorry, I do not recognize it! \n\n " + "Please try again.");
+        return false;
+      }
+
+      if (guess_input > random_colour) {
+        alert("Sorry, your guess is incorrect.\n\n" + "Hint: your colour is alphabetically higher than mine! \n\n" + "Please try again");
+        return false;
+      }
+
+      if (guess_input < random_colour) {
+        alert("Sorry, your guess is incorrect.\n\n" + "Hint: your colour is alphabetically lower than mine! \n\n" + "Please try again");
+        return false;
+      }
+
+      var myBody = document.getElementsByTagName("body")[0];
+      myBody.style.background = random_colour;
+
+      alert("Congratulations! You have guessed the " + target_colour + ".\n\n It took you " + attempts + " to guess the colour!" + "\n\n You can see the colour in the background");
+      return true;
+
+    }
+  </script>
+</head>
+
+<body onload="recognizeColour()">
+
+
+</body>
+
+</html>

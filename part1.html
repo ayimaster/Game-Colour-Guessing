@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    var colour;
+    var target_colour = ["aqua", "beige", "coral", "grey", "orange", "pink", "red", "salmon", "teal"];
+    var colour_input_text;
+    var guess_input;
+    var finished = false;
+    var attempts = 0;
+    var random_colour;
+
+
+    function recognizeColour() {
+      var x = Math.floor(Math.random() * target_colour.length);
+      random_colour = target_colour[x];
+      console.log(x);
+      alert(random_colour);
+
+      while (!finished) {
+        colour_input_text = prompt("I am thinking of one of these colours. \n\n" + target_colour.join(", ") + "\n\n What colour am I thinking of?");
+        guess_input = colour_input_text.toLocaleLowerCase();
+        attempts += 1;
+        finished = true;
+      }
+    }
+
+  </script>
+</head>
+
+<body onload="recognizeColour()">
+
+
+</body>
+
+</html>
